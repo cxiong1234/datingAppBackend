@@ -12,11 +12,6 @@ database name: postgres <br>
 Please follow the Youtube Video step by step: <br>
 https://www.youtube.com/watch?v=y59APSl0mzk&ab_channel=ManikantaMaddipati
 
-
-Demo video
-<video width="640" height="480" src="/doc/demo_video.mov">
-
-
 ##3. Git Commands:
 
 Case 1: you were on feature_branch checked out before
