@@ -14,9 +14,7 @@ https://www.youtube.com/watch?v=y59APSl0mzk&ab_channel=ManikantaMaddipati
 
 
 Demo video
-<video width="640" height="480" controls>
-  <source src="/doc/demo_video.mov" type="video/mp4">
-</video>
+<video width="640" height="480" src="/doc/demo_video.mov">
 
 
 ##3. Git Commands:
