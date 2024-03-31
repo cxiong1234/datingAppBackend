@@ -12,3 +12,27 @@ database name: postgres <br>
 Please follow the Youtube Video step by step: <br>
 https://www.youtube.com/watch?v=y59APSl0mzk&ab_channel=ManikantaMaddipati
 
+
+Demo video
+<video width="640" height="480" controls>
+  <source src="/doc/demo_video.mov" type="video/mp4">
+</video>
+
+
+##3. Git Commands:
+
+Case 1: you were on feature_branch checked out before
+```
+git fetch origin  // fetch the latest changes from remote
+git rebase master // rebase your feature branch with master, resolve conflicts if any
+git push 
+```
+
+Case 2: you start a new feature development from main
+```
+git checkout main // checkout to main branch
+git checkout -b feature_branch // create a new branch from main
+git add . // add your changes
+git commit -m "your commit message"
+git push origin feature_branch // push your changes to remote
+```
