@@ -1,5 +1,6 @@
 package org.example.datingapp.Friendship;
 
+import org.example.datingapp.Friendship.dto.AcceptOrDeclineDto;
 import org.example.datingapp.Friendship.entities.FriendRequestEntity;
 import org.example.datingapp.Friendship.services.FriendRequestService;
 import org.example.datingapp.Friendship.services.FriendshipService;
@@ -7,7 +8,11 @@ import org.example.datingapp.Friendship.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.example.datingapp.Friendship.dto.FriendRequestDto;
+
 
 import java.util.List;
 
@@ -34,15 +39,25 @@ public class FriendshipRESTController {
         return friendshipService.getFriendsForUser(userId);
     }
 
-    @RequestMapping("/addAFriend")
-    public String AddAFriend(@RequestParam(name = "userId") Integer userId, @RequestParam(name = "friendId") Integer friendId){
-        boolean success = friendRequestService.addAFriend(userId, friendId);
+    @PostMapping("/addAFriend")
+    public String AddAFriend(@RequestBody FriendRequestDto friendRequestDto){
+        boolean success = friendRequestService.addAFriend(friendRequestDto.getUserId(), friendRequestDto.getFriendId());
         if (success) {
-            return "Friend request sent successfully from user " + userId + " to user " + friendId;
+            return "Friend request sent successfully from user " + friendRequestDto.getUserId() + " to user " + friendRequestDto.getFriendId();
         } else {
             return "Friend request already exists or failed to send.";
         }
     }
+//    @RequestMapping("/addAFriend")
+//    public String AddAFriend(@RequestParam(name="userId") Integer userId, @RequestParam(name="friendId") Integer friendId){
+//        boolean success = friendRequestService.addAFriend(userId, friendId);
+//        if (success) {
+//            return "Friend request sent successfully from user " + userId + " to user " + friendId;
+//        } else {
+//            return "Friend request already exists or failed to send.";
+//        }
+
+
 
     @RequestMapping("/listAllFriendRequests")
     public List<FriendRequestEntity> checkFriendRequests(@RequestParam(name = "userId") Integer userId){
@@ -50,8 +65,8 @@ public class FriendshipRESTController {
         return friendRequestService.getAllFriendRequestsToUser(userId);
     }
 
-    @RequestMapping("/acceptOrDecline")
-    public String AcceptOrDecline(@RequestParam(name = "decision") boolean decision, @RequestParam(name = "senderId") Integer senderId, @RequestParam(name = "receiverId") Integer receiverId){
-        return friendRequestService.acceptOrDecline(decision, senderId, receiverId);
+    @PostMapping("/acceptOrDecline")
+    public String AcceptOrDecline(@RequestBody AcceptOrDeclineDto acceptOrDeclineDto){
+        return friendRequestService.acceptOrDecline(acceptOrDeclineDto.getDecision(), acceptOrDeclineDto.getSenderId(), acceptOrDeclineDto.getReceiverId());
     }
 }
