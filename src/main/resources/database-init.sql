@@ -33,10 +33,20 @@ INSERT INTO users (email, password, nickname, url, last_update_time) VALUES ('ni
 INSERT INTO users (email, password, nickname, url ,last_update_time) VALUES ('xiaogege@gmail.com', 'ssssss', 'Xiaogege', 'https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png', '2020-06-02 00:00:00');
 INSERT INTO users (email, password, nickname, url ,last_update_time) VALUES ('xiaojiejie@gmail.com', 'asdqwe', 'Xiaojiejie', 'https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png','2020-06-03 00:00:00');
 INSERT INTO users (email, password, nickname, url ,last_update_time) VALUES ('plmm@gmail.com', '123456', 'Marry','https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png', '2020-06-05 00:00:00');
-
+INSERT INTO users (email, password, nickname, url ,last_update_time) VALUES ('muskElon@gmail.com', '123456', 'Musk Elon','https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png', '2020-06-07 00:00:00');
+INSERT INTO users (email, password, nickname, url ,last_update_time) VALUES ('sundarPichai@gmail.com', '123456', 'Pichai Sundar','https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png', '2020-06-05 01:00:00');
+INSERT INTO users (email, password, nickname, url ,last_update_time) VALUES ('erdaye@gmail.com', '123456', '二大爷','https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png', '2020-06-05 02:00:00');
 
 INSERT INTO friendships (user_id_1, user_id_2) values (2,3);
 INSERT INTO friendships (user_id_1, user_id_2) values (2,4);
 INSERT INTO friendships (user_id_1, user_id_2) values (3,4);
+INSERT INTO friendships (user_id_1, user_id_2) values (2,5);
+INSERT INTO friendships (user_id_1, user_id_2) values (2,6);
+INSERT INTO friendships (user_id_1, user_id_2) values (2,7);
 
 INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) values (1, 4, 'Pending');
+INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) values (1, 2, 'Pending');
+INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) values (3, 2, 'Pending');
+INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) values (2, 1, 'Rejected');
+INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) values (2, 5, 'Pending');
+INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) values (2, 6, 'Accepted');
