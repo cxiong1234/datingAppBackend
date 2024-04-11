@@ -18,15 +18,17 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    @Column(nullable = false, length = 255)
+    @Column
     private String email;
 
-    @Column(nullable = false, length = 255)
+    @Column
     private String password;
 
-    @Column(nullable = false, length = 255)
+    @Column
     private String nickname;
 
+    @Column
+    private String url;
     @Column(name = "last_update_time", nullable = false)
     private LocalDateTime lastUpdateTime = LocalDateTime.now();
 
@@ -46,6 +48,14 @@ public class UserEntity {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setEmail(String email) {

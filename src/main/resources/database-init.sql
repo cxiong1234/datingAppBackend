@@ -8,6 +8,7 @@ CREATE TABLE users (
                        email VARCHAR(255) UNIQUE,
                        password VARCHAR(255),
                        nickname VARCHAR(255),
+                       url VARCHAR (255),
                        last_update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -28,10 +29,10 @@ CREATE TABLE friend_requests (
                                  CONSTRAINT fk_sender_user_id FOREIGN KEY (sender_user_id) REFERENCES users (user_id) ON DELETE CASCADE,
                                  CONSTRAINT fk_receiver_user_id FOREIGN KEY (receiver_user_id) REFERENCES users (user_id) ON DELETE CASCADE
 );
-INSERT INTO users (email, password, nickname, last_update_time) VALUES ('nickJohn@gmail.com', 'asdqwe', 'Nick', '2020-06-01 00:00:00');
-INSERT INTO users (email, password, nickname, last_update_time) VALUES ('xiaogege@gmail.com', 'ssssss', 'Xiaogege', '2020-06-02 00:00:00');
-INSERT INTO users (email, password, nickname, last_update_time) VALUES ('xiaojiejie@gmail.com', 'asdqwe', 'Xiaojiejie', '2020-06-03 00:00:00');
-INSERT INTO users (email, password, nickname, last_update_time) VALUES ('plmm@gmail.com', '123456', 'Marry', '2020-06-05 00:00:00');
+INSERT INTO users (email, password, nickname, url, last_update_time) VALUES ('nickJohn@gmail.com', 'asdqwe', 'Nick', 'https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png', '2020-06-01 00:00:00');
+INSERT INTO users (email, password, nickname, url ,last_update_time) VALUES ('xiaogege@gmail.com', 'ssssss', 'Xiaogege', 'https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png', '2020-06-02 00:00:00');
+INSERT INTO users (email, password, nickname, url ,last_update_time) VALUES ('xiaojiejie@gmail.com', 'asdqwe', 'Xiaojiejie', 'https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png','2020-06-03 00:00:00');
+INSERT INTO users (email, password, nickname, url ,last_update_time) VALUES ('plmm@gmail.com', '123456', 'Marry','https://png.pngtree.com/png-clipart/20211216/ourmid/pngtree-green-valentine-s-day-than-heart-confession-boy-cartoon-wechat-avatar-png-image_4068106.png', '2020-06-05 00:00:00');
 
 
 INSERT INTO friendships (user_id_1, user_id_2) values (2,3);
