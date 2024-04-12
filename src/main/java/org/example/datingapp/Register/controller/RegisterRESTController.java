@@ -6,6 +6,8 @@ import org.example.datingapp.Profile.ProfileResponse;
 import org.example.datingapp.Register.Dto.RegisterRequest;
 import org.example.datingapp.Register.Dto.RegisterResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,24 +20,24 @@ public class RegisterRESTController {
     private UserRepository userRepository;
 
     @PostMapping("/register")
-    public RegisterResponse registerUser(@RequestBody RegisterRequest request) {
+    public ResponseEntity<RegisterResponse> registerUser(@RequestBody RegisterRequest request) {
         UserEntity newUser = new UserEntity();
         newUser.setEmail(request.email);
         newUser.setPassword(request.password);
         newUser.setNickname(request.nickname);
         newUser.setUrl(PROFILE_URL);
         if (userRepository.findByEmail(newUser.getEmail()).isPresent()) {
-            return new RegisterResponse(
+            return new ResponseEntity(new RegisterResponse(
                     null,
                     null,
-                    "Email already exists");
+                    "Email already exists"), HttpStatus.IM_USED);
         } else {
             UserEntity user = userRepository.save(newUser);
-            // TODO: Implement token generation
-            return new RegisterResponse(
+            return new ResponseEntity(new RegisterResponse(
                     convertToResponse(user),
                     "asdfasdfadsfasdfasfsf",
-                    null);
+                    null), HttpStatus.CREATED);
+            // TODO: Implement token generation
         }
     }
 
