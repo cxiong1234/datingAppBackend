@@ -31,6 +31,7 @@ public class RegisterRESTController {
                     "Email already exists");
         } else {
             UserEntity user = userRepository.save(newUser);
+            // TODO: Implement token generation
             return new RegisterResponse(
                     convertToResponse(user),
                     "asdfasdfadsfasdfasfsf",
