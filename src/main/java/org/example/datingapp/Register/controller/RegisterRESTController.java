@@ -27,13 +27,13 @@ public class RegisterRESTController {
         newUser.setNickname(request.nickname);
         newUser.setUrl(PROFILE_URL);
         if (userRepository.findByEmail(newUser.getEmail()).isPresent()) {
-            return new ResponseEntity(new RegisterResponse(
+            return new ResponseEntity<>(new RegisterResponse(
                     null,
                     null,
                     "Email already exists"), HttpStatus.IM_USED);
         } else {
             UserEntity user = userRepository.save(newUser);
-            return new ResponseEntity(new RegisterResponse(
+            return new ResponseEntity<>(new RegisterResponse(
                     convertToResponse(user),
                     "asdfasdfadsfasdfasfsf",
                     null), HttpStatus.CREATED);

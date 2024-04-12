@@ -19,7 +19,7 @@ class ProfileRESTController {
     public ResponseEntity<ProfileResponse> getProfile(
             @RequestParam(name = "user_id") Integer userId
     ) {
-        return new ResponseEntity(
+        return new ResponseEntity<>(
                 convertToResponse(repository.getReferenceById(userId)),
                 HttpStatus.OK);
     }
