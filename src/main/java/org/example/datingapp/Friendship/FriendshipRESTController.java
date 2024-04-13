@@ -1,16 +1,14 @@
 package org.example.datingapp.Friendship;
 
 import org.example.datingapp.Friendship.dto.AcceptOrDeclineDto;
+import org.example.datingapp.Friendship.dto.FriendRequestProjectionDto;
 import org.example.datingapp.Friendship.entities.FriendRequestEntity;
 import org.example.datingapp.Friendship.services.FriendRequestService;
 import org.example.datingapp.Friendship.services.FriendshipService;
 import org.example.datingapp.Friendship.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.example.datingapp.Friendship.dto.FriendRequestDto;
 
 
@@ -63,6 +61,12 @@ public class FriendshipRESTController {
     public List<FriendRequestEntity> checkFriendRequests(@RequestParam(name = "userId") Integer userId){
 
         return friendRequestService.getAllFriendRequestsToUser(userId);
+    }
+
+    @RequestMapping("/listAllFriendRequestsNew")
+    public ResponseEntity<List<FriendRequestProjectionDto>> listAllFriendRequests(@RequestParam Integer userId) {
+        List<FriendRequestProjectionDto> projections = friendRequestService.getAllFriendRequestsAndRelatedUsers(userId);
+        return ResponseEntity.ok(projections);
     }
 
     @PostMapping("/acceptOrDecline")

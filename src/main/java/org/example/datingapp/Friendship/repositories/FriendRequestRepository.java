@@ -16,10 +16,18 @@ public interface FriendRequestRepository extends JpaRepository<FriendRequestEnti
     @Query("SELECT fr FROM FriendRequestEntity fr WHERE fr.id.receiverUserId = :receiverUserId")
     List<FriendRequestEntity> findByReceiverUserId(Integer receiverUserId);
 
+    @Query("SELECT fr, sender, receiver FROM FriendRequestEntity fr " +
+            "JOIN UserEntity sender ON fr.id.senderUserId = sender.userId " +
+            "JOIN UserEntity receiver ON fr.id.receiverUserId = receiver.userId " +
+            "WHERE fr.id.receiverUserId = :userId OR fr.id.senderUserId = :userId")
+    List<Object[]> findFriendRequestsAndUsers(@Param("userId") Integer userId);
+
 
     // Change the Request status
     @Modifying
     @Transactional
     @Query("UPDATE FriendRequestEntity fr SET fr.requestStatus = :status WHERE fr.id.senderUserId = :senderId AND fr.id.receiverUserId = :receiverId")
     int updateRequestStatus(@Param("status") String status, @Param("senderId") Integer senderId, @Param("receiverId") Integer receiverId);
+
+
 }

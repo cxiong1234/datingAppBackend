@@ -9,5 +9,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     // You can define custom query methods here
     Optional<UserEntity> findByEmail(String email);
+    Boolean existsByEmail(String email);
     boolean existsByUserId(Integer userId);
 }

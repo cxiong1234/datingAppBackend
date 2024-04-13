@@ -23,6 +23,17 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     runtimeOnly 'org.postgresql:postgresql:42.6.0'
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.11.2') {
+        because 'Needed for JSON processing on JWT'
+    }
+    runtimeOnly('io.jsonwebtoken:jjwt-jackson:0.11.2') {
+        because 'Needed if you use Jackson'
+    }
+
 }
 
 
