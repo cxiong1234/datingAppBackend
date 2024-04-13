@@ -50,3 +50,4 @@ INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) v
 INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) values (2, 1, 'Rejected');
 INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) values (2, 5, 'Pending');
 INSERT INTO friend_requests (sender_user_id, receiver_user_id, request_status) values (2, 6, 'Accepted');
+

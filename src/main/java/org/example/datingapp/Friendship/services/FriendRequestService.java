@@ -1,16 +1,14 @@
 package org.example.datingapp.Friendship.services;
 
-import org.example.datingapp.Friendship.entities.FriendRequestEntity;
-import org.example.datingapp.Friendship.entities.FriendRequestId;
-import org.example.datingapp.Friendship.entities.FriendshipEntity;
-import org.example.datingapp.Friendship.entities.FriendshipId;
-import org.example.datingapp.Friendship.entities.RequestStatus;
+import org.example.datingapp.Friendship.dto.FriendRequestProjectionDto;
+import org.example.datingapp.Friendship.entities.*;
 import org.example.datingapp.Friendship.repositories.FriendRequestRepository;
 import org.example.datingapp.Friendship.repositories.FriendshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.example.datingapp.Friendship.entities.RequestStatus;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,10 +37,22 @@ public class FriendRequestService {
         }
         return false; // Friend request already exists
     }
+
     public List<FriendRequestEntity> getAllFriendRequestsToUser(Integer userId) {
         return friendRequestRepository.findByReceiverUserId(userId);
     }
 
+    public List<FriendRequestProjectionDto> getAllFriendRequestsAndRelatedUsers(Integer userId) {
+        List<Object[]> results = friendRequestRepository.findFriendRequestsAndUsers(userId);
+        List<FriendRequestProjectionDto> projections = new ArrayList<>();
+        for (Object[] result : results) {
+            FriendRequestEntity friendRequest = (FriendRequestEntity) result[0];
+            UserEntity sender = (UserEntity) result[1];
+            UserEntity receiver = (UserEntity) result[2];
+            projections.add(new FriendRequestProjectionDto(friendRequest, sender, receiver));
+        }
+        return projections;
+    }
 
     // receiver accept or decline the friend request
     @Transactional
