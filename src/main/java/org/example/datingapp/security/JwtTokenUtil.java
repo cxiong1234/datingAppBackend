@@ -54,7 +54,7 @@ public class JwtTokenUtil {
         return false;
     }
 
-    public String extractUsername(String token) {
+    public String extractUserEmailFromToken(String token) {
         return extractClaims(token).getSubject();
     }
 
