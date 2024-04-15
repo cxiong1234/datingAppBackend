@@ -29,9 +29,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
             if (jwtUtil.isTokenValid(token) && !jwtUtil.isTokenExpired(token)) {
-                String username = jwtUtil.extractUsername(token);
-                UserEntity userEntity = userDetailsService.loadUserByUsername(username);
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userEntity, null, new ArrayList<>());
+                String userEmail = jwtUtil.extractUserEmailFromToken(token);
+                UserDetails userDetails = userDetailsService.loadUserByUserEmail(userEmail);
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, new ArrayList<>());
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
